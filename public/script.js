@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   checkLoginStatus();
 
-  // Dashboard functions
+  // Dashboard page functions
   if (window.location.pathname === '/dashboard') {
     const saveBtn = document.getElementById('saveBtn');
     if (saveBtn) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadData();
   }
 
-  // Settings function
+  // Settings page functions
   if (window.location.pathname === '/settings') {
     const changePassBtn = document.getElementById('changePassBtn');
     if (changePassBtn) {
@@ -39,29 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// --- Auth Functions ---
+// --- Switch Forms ---
 function showRegister() {
-  const regForm = document.getElementById('registerForm');
-  const loginForm = document.getElementById('loginForm');
-  if (regForm && loginForm) {
-    regForm.style.display = 'block';
-    loginForm.style.display = 'none';
-  }
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('registerForm').style.display = 'block';
 }
 
 function showLogin() {
-  const regForm = document.getElementById('registerForm');
-  const loginForm = document.getElementById('loginForm');
-  if (regForm && loginForm) {
-    regForm.style.display = 'none';
-    loginForm.style.display = 'block';
-  }
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
 }
 
+// --- Register Function ---
 async function register() {
   const username = document.getElementById('regUser').value.trim();
   const password = document.getElementById('regPass').value.trim();
-  if (!username || !password) return alert('Fill all fields');
+  if (!username || !password) return alert('Please fill all fields!');
 
   const res = await fetch('/api/register', {
     method: 'POST',
@@ -70,13 +63,14 @@ async function register() {
   });
   const result = await res.json();
   alert(result.message);
-  if (result.success) showLogin();
+  if (result.success) showLogin(); // Go back to login after success
 }
 
+// --- Login Function ---
 async function login() {
   const username = document.getElementById('loginUser').value.trim();
   const password = document.getElementById('loginPass').value.trim();
-  if (!username || !password) return alert('Fill all fields');
+  if (!username || !password) return alert('Please fill all fields!');
 
   const res = await fetch('/api/login', {
     method: 'POST',
@@ -84,40 +78,46 @@ async function login() {
     body: JSON.stringify({ username, password })
   });
   const result = await res.json();
+  
   if (result.success) {
+    // Save login data
     localStorage.setItem('token', result.token);
     localStorage.setItem('username', result.username);
+    // Go to dashboard
     window.location.href = '/dashboard';
   } else {
-    alert(result.message);
+    alert(result.message); // Show error: wrong user/pass
   }
 }
 
+// --- Logout ---
 function logout() {
   localStorage.clear();
   window.location.href = '/';
 }
 
+// --- Check if Logged In ---
 function checkLoginStatus() {
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
 
+  // If not logged in AND not on login page → go to login
   if (!token && window.location.pathname !== '/') {
     window.location.href = '/';
     return;
   }
 
+  // If logged in AND on login page → go to dashboard
   if (token && window.location.pathname === '/') {
     window.location.href = '/dashboard';
     return;
   }
 
-  if (username && document.getElementById('userName')) {
-    document.getElementById('userName').textContent = username;
-  }
+  // Show username on dashboard/settings
+  const userNameEl = document.getElementById('userName');
+  if (userNameEl) userNameEl.textContent = localStorage.getItem('username');
 }
 
-// --- Data Functions (Edit & Delete Added) ---
+// --- Load + Edit + Delete Data ---
 async function loadData() {
   const token = localStorage.getItem('token');
   const res = await fetch('/api/data', {
@@ -141,15 +141,13 @@ async function loadData() {
 }
 
 function editData(id, currentText) {
-  const newText = prompt('Edit your entry:', currentText);
-  if (newText && newText.trim() !== '') {
-    updateData(id, newText.trim());
-  }
+  const newText = prompt('Edit entry:', currentText);
+  if (newText && newText.trim()) updateData(id, newText.trim());
 }
 
 async function updateData(id, newContent) {
   const token = localStorage.getItem('token');
-  const res = await fetch(`/api/update/${id}`, {
+  await fetch(`/api/update/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -157,34 +155,24 @@ async function updateData(id, newContent) {
     },
     body: JSON.stringify({ content: newContent })
   });
-  const result = await res.json();
-  if (result.success) {
-    loadData();
-  } else {
-    alert('Error: ' + result.error);
-  }
+  loadData();
 }
 
 async function deleteData(id) {
   if (!confirm('Delete this entry?')) return;
   const token = localStorage.getItem('token');
-  const res = await fetch(`/api/delete/${id}`, {
+  await fetch(`/api/delete/${id}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${token}` }
   });
-  const result = await res.json();
-  if (result.success) {
-    loadData();
-  } else {
-    alert('Error: ' + result.error);
-  }
+  loadData();
 }
 
-// --- Settings: Change Password ---
+// --- Change Password ---
 async function changePassword() {
   const oldPass = document.getElementById('oldPass').value.trim();
   const newPass = document.getElementById('newPass').value.trim();
-  if (!oldPass || !newPass) return alert('Fill both fields');
+  if (!oldPass || !newPass) return alert('Fill both fields!');
 
   const token = localStorage.getItem('token');
   const res = await fetch('/api/change-password', {

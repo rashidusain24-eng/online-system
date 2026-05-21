@@ -10,22 +10,22 @@
   <div class="container">
     <h1>My Online System</h1>
 
-    <div id="authSection">
-      <div id="registerForm">
-        <h3>Register</h3>
-        <input type="text" id="regUser" placeholder="Username">
-        <input type="password" id="regPass" placeholder="Password">
-        <button onclick="register()">Register</button>
-        <p>Already have account? <a href="#" onclick="showLogin()">Login here</a></p>
-      </div>
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h3>Login</h3>
+      <input type="text" id="loginUser" placeholder="Username">
+      <input type="password" id="loginPass" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p>Don't have account? <a href="#" onclick="showRegister()">Register here</a></p>
+    </div>
 
-      <div id="loginForm" style="display: none;">
-        <h3>Login</h3>
-        <input type="text" id="loginUser" placeholder="Username">
-        <input type="password" id="loginPass" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <p>Don't have account? <a href="#" onclick="showRegister()">Register here</a></p>
-      </div>
+    <!-- Register Form -->
+    <div id="registerForm" style="display: none;">
+      <h3>Register</h3>
+      <input type="text" id="regUser" placeholder="Username">
+      <input type="password" id="regPass" placeholder="Password">
+      <button onclick="register()">Register</button>
+      <p>Already have account? <a href="#" onclick="showLogin()">Login here</a></p>
     </div>
   </div>
   <script src="script.js"></script>
