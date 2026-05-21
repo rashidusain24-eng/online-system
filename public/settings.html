@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Online System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/settings" class="active">Settings</a>
+      <button onclick="logout()" class="logout-btn">Logout</button>
+    </nav>
+
+    <h2>Account Settings</h2>
+    <p>Update your account information here.</p>
+
+    <hr><br>
+
+    <h3>Change Password</h3>
+<input type="password" id="oldPass" placeholder="Current Password">
+<input type="password" id="newPass" placeholder="New Password">
+<button id="changePassBtn">Update Password</button>
+
+    <h3>Account Management</h3>
+    <p>More options will be added here soon.</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Online System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="/dashboard" class="active">Dashboard</a>
+      <a href="/settings">Settings</a>
+      <button onclick="logout()" class="logout-btn">Logout</button>
+    </nav>
+
+    <h2>Welcome, <span id="userName"></span>!</h2>
+    <p>Your personal dashboard — save and view your data here.</p>
+
+    <hr><br>
+
+    <h3>Add New Entry</h3>
+    <input type="text" id="dataInput" placeholder="Enter something...">
+    <button id="saveBtn">Save</button>
+
+    <h3>Your Saved Data:</h3>
+    <ul id="dataList"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

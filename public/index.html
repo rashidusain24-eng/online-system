@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online System</title>
+  <title>Login | Online System</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>My Online System</h1>
 
-    <!-- Auth Section -->
     <div id="authSection">
       <div id="registerForm">
         <h3>Register</h3>
@@ -27,23 +26,6 @@
         <button onclick="login()">Login</button>
         <p>Don't have account? <a href="#" onclick="showRegister()">Register here</a></p>
       </div>
-    </div>
-
-    <!-- Main System (Hidden until login) -->
-    <div id="systemSection" style="display: none;">
-      <h3>Welcome, <span id="userName"></span>!</h3>
-      <button onclick="logout()">Logout</button>
-      <hr><br>
-
-      <p id="message"></p>
-      <button id="actionBtn">Click Me</button>
-
-      <h3>Data Entry</h3>
-      <input type="text" id="dataInput" placeholder="Enter something...">
-      <button id="saveBtn">Save</button>
-
-      <h3>Your Saved Data:</h3>
-      <ul id="dataList"></ul>
     </div>
   </div>
   <script src="script.js"></script>

@@ -74,3 +74,140 @@ a {
 a:hover {
   text-decoration: underline;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+  color: #1a73e8;
+  margin-bottom: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+button:hover {
+  background-color: #1557b0;
+}
+
+ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+li {
+  background: #e8f0fe;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+  border-radius: 4px;
+}
+
+a {
+  color: #1a73e8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.navbar a {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.navbar a.active {
+  background-color: #1a73e8;
+  color: white;
+}
+
+.logout-btn {
+  margin-left: auto;
+  background-color: #d93025;
+}
+
+.logout-btn:hover {
+  background-color: #b02018;
+}
+
+/* Data item layout */
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8f0fe;
+  padding: 0.7rem;
+  margin: 0.3rem 0;
+  border-radius: 4px;
+}
+
+.data-text {
+  flex: 1;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-btn {
+  background-color: #f9ab00;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+}
+.edit-btn:hover { background-color: #e69500; }
+
+.delete-btn {
+  background-color: #d93025;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+}
+.delete-btn:hover { background-color: #b02018; }
