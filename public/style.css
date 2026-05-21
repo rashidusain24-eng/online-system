@@ -58,3 +58,19 @@ li {
   margin: 0.3rem 0;
   border-radius: 4px;
 }
+
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+a {
+  color: #1a73e8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
