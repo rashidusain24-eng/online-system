@@ -39,3 +39,22 @@ button {
 button:hover {
   background-color: #1557b0;
 }
+input {
+  padding: 0.5rem;
+  width: 250px;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+li {
+  background: #e8f0fe;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+  border-radius: 4px;
+}
